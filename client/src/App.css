@@ -1,38 +1,138 @@
-.App {
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.body {
+  background-color: #f0f0f0;
+  padding: 20px;
+  width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.save-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  background-color: #ffffff;
+  box-shadow: -3px 0 5px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  z-index: 999;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
 }
 
-.App-link {
-  color: #61dafb;
+.popup-heading {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.responsive-dropdown {
+  margin-bottom: 10px;
+}
+
+.bordered-dropdown {
+  border: 2px solid #007bff;
+  padding: 10px;
+}
+
+.popup input[type="text"],
+.popup button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+}
+
+.custom-select option {
+  padding: 10px;
+  background-color: #fff;
+  color: #333;
+}
+
+.add-schema-link {
+  margin-top: 10px;
+}
+
+.add-schema-link a {
+  text-decoration: none;
+  color: #25a2bd;
+  cursor: pointer;
+}
+
+.page .popup {
+  transform: translateX(0);
+}
+
+.footer-buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.footer-buttons button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+
+  .popup {
+    width: 90%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .popup select {
+    width: 100%;
+  }
+
+  .responsive-dropdown {
+    margin-bottom: 10px;
+  }
+
+  .header {
+    font-size: 18px;
+  }
+
+  .body {
+    font-size: 16px;
+  }
+
+  .save-button {
+    font-size: 16px;
   }
 }
