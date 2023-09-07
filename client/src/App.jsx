@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import ajax from './ajax';
 import './App.css';
 
 
@@ -21,9 +21,13 @@ const App = () => {
     { label: 'State', value: 'state' },
   ]);
 
+
+  useEffect(() => {
+    const matchedArray = availableSchemas.filter(item => selectedSchemas.includes(item.label));
+    setSchema(matchedArray)
+  }, [selectedSchemas])
+
   const handleChange = (e) => {
-    const foundItem = availableSchemas.find(item => item.label === e.target.value);
-    schema.push(foundItem);
     setInputValue({ ...inputValue, [e.target.name]: e.target.value });
 
   };
@@ -33,7 +37,6 @@ const App = () => {
     updatedSelectedSchemas[index] = e.target.value;
     setSelectedSchemas(updatedSelectedSchemas);
   };
-
 
   const handleClickToOpen = () => {
     setPopUpOpen(true);
@@ -58,13 +61,14 @@ const App = () => {
       alert("Please fill in the segment name field and Add schema");
       return null
     } else {
-      axios
-        .post('https://webhook.site/c0a07569-4f17-4090-aa28-007e36c1a5ff', data, {
+      ajax
+        .post('/c0a07569-4f17-4090-aa28-007e36c1a5ff', data, {
           headers: {
             'Content-Type': 'application/json',
           },
         })
         .then((response) => {
+          console.log('Added Sucessfully:', response.data);
         })
         .catch((error) => {
           console.error('Error:', error);
